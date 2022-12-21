@@ -17,15 +17,15 @@ public class region {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_region;
+    private Long id;
 
-    private String code_region;
+    private String coderegion;
     @Column(unique = true)
-    private String nom_region;
+    private String nom;
 
-    private String domaine_activite;
+    private String activite;
 
-    private String langue_parler;
+    private String langue;
     private String superficie;
     private String description;
 
