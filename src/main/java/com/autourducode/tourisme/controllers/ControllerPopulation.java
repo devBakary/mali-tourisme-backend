@@ -3,7 +3,7 @@ package com.autourducode.tourisme.controllers;
 
 import com.autourducode.tourisme.models.Population;
 import com.autourducode.tourisme.models.region;
-import com.autourducode.tourisme.security.services.ServicePopulation;
+import com.autourducode.tourisme.repository.RepositoryPopulation;
 import com.autourducode.tourisme.security.services.serviceRegion;
 import io.swagger.annotations.Api;
 import lombok.Data;
@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials="true")
 @RestController
@@ -26,6 +27,9 @@ public class ControllerPopulation {
     @Autowired
     private serviceRegion serviceRegion;
 
+    @Autowired
+    private RepositoryPopulation repositoryPopulation;
+
 
     //@PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create/{id}")
@@ -39,11 +43,11 @@ public class ControllerPopulation {
             return ServicePopulation.creer(population);
         }
         return null;
-
-
-
     }
-
+    @GetMapping("/liste/{id}")
+    public List<Population> trouverTiragesParIdListe(@PathVariable Long id){
+        return repositoryPopulation.FindPopulationByRegionId(id);
+    }
 
     @GetMapping("/read")
     public List<Population> read(){

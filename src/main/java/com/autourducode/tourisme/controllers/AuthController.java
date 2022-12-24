@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.autourducode.tourisme.models.Commentaire;
 import com.autourducode.tourisme.models.ERole;
 import com.autourducode.tourisme.models.Role;
 import com.autourducode.tourisme.models.User;
@@ -19,11 +20,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.autourducode.tourisme.payload.request.SignupRequest;
 import com.autourducode.tourisme.payload.response.JwtResponse;
@@ -37,6 +34,8 @@ import com.autourducode.tourisme.security.services.UserDetailsImpl;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+
+
   @Autowired
   AuthenticationManager authenticationManager;
 
@@ -120,5 +119,12 @@ public class AuthController {
     userRepository.save(user);
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+  }
+
+
+  //afficher commentaire par id region
+  @GetMapping("/user/{username}")
+  public User afficherparUsername(@PathVariable String username) {
+    return userRepository.findUsername(username);
   }
 }

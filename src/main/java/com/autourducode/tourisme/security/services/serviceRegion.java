@@ -3,6 +3,7 @@ package com.autourducode.tourisme.security.services;
 
 
 
+import com.autourducode.tourisme.models.User;
 import com.autourducode.tourisme.models.region;
 
 import java.util.List;
@@ -21,4 +22,6 @@ public interface serviceRegion {
     region regionParId(Long id);
 
     String supprimer(Long id);
+
+    User userParId(Long id);
 }

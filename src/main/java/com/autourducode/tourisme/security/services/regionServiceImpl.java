@@ -1,7 +1,9 @@
 package com.autourducode.tourisme.security.services;
 
 
+import com.autourducode.tourisme.models.User;
 import com.autourducode.tourisme.models.region;
+import com.autourducode.tourisme.repository.UserRepository;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import java.util.Optional;
 public class regionServiceImpl implements serviceRegion{
 
 
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     com.autourducode.tourisme.repository.repositoryRegion repositoryRegion;
 
@@ -60,5 +64,10 @@ public class regionServiceImpl implements serviceRegion{
     public String supprimer(Long id) {
         repositoryRegion.deleteById(id);
         return "region supprimé";
+    }
+
+    @Override
+    public User userParId(Long id) {
+        return userRepository.findById(id).get();
     }
 }

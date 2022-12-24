@@ -56,7 +56,7 @@ public class controllerRegion {
         return serviceRegion.regionById(id);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable Long id){
         return serviceRegion.supprimer(id);
@@ -70,7 +70,7 @@ public class controllerRegion {
                                 @Param("img") MultipartFile img,
                                 @Param("langue") String langue,
                                 @Param("nom") String nom,
-                                @Param("superficie") String superficie
+                                    @Param("superficie") String superficie
 
                                   ) throws IOException {
 
