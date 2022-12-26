@@ -56,10 +56,11 @@ public class controllerRegion {
         return serviceRegion.regionById(id);
     }
 
-    //@PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable Long id){
-        return serviceRegion.supprimer(id);
+
+         serviceRegion.supprimer(id);
+        return "effacé";
     }
 
     @PostMapping("/ajout")
